@@ -54,7 +54,7 @@
             <input type="date" id="masa_berlaku" name="masa_berlaku" class="form-control col-lg-4" placeholder="Masa Berlaku" value="">
           </div>
           <div class="form-group">
-            <input type="text" id="lampiran" name="lampiran" class="form-control" placeholder="Lampiran" value="">
+            <input type="file" id="lampiran" name="lampiran" class="form-control" placeholder="Lampiran" value="">
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-success">Simpan</button>

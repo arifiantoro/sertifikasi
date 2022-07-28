@@ -50,16 +50,12 @@ class pesertas extends Controller
      */
     public function store(Request $request)
     {
-        $messages = [
-            'required' => 'Form Tidak Boleh Kosong!!!'
-        ];
-        $this->validate($request, [
-            'tgl_pengesahan' => 'required|date',
-            'masa_berlaku' => 'required',
-        ], $messages);
+        $validatedData = $request->validate([
+            'tgl_pengesahan' => ['required'],
+            'masa_berlaku' => ['required'],
+        ]);
 
-
-        return redirect('/first')->with('data', $request);
+        return redirect('/first')->with('data', $validatedData);
     }
 
     /**
