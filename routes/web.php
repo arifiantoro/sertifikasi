@@ -28,6 +28,12 @@ Route::get('/admin', function () {
 use App\Http\Controllers\pesertas as peserta;
 
 Route::get('/first', [peserta::class, 'index']);
+Route::get('/third/{id}', [peserta::class, 'edit']);
+
+// Route::get('/third', function () {
+//     return view('third');
+// });
+
 
 use App\Http\Controllers\sertifikasis as sertifikasi;
 

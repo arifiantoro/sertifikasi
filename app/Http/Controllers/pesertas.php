@@ -50,7 +50,11 @@ class pesertas extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'batch' => 'required',
+            'tgl_pengesahan' => 'required',
+            'masa_berlaku' => 'required',
+        ]);
     }
 
     /**
@@ -71,8 +75,19 @@ class pesertas extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    { {
+            $dbpeserta = DB::table('form_daftars')
+                ->join('pesertas', 'form_daftars.id_peserta', '=', 'pesertas.id')
+                ->leftJoin('lembagas', 'pesertas.id', '=', 'lembagas.id_peserta')
+                ->join('trainings', 'form_daftars.id_training', '=', 'trainings.id')
+                ->join('jadwal_trainings', 'trainings.id', '=', 'jadwal_trainings.training_id')
+                ->select(DB::raw('@nomor := @nomor + 1 as no'), 'form_daftars.id', 'trainings.title', 'jadwal_trainings.jadwal', 'jadwal_trainings.tempat', 'pesertas.name', 'pesertas.jk', 'pesertas.tempat_lahir', 'pesertas.tgl_lahir', 'pesertas.pendidikan', 'pesertas.telp', 'pesertas.email', 'pesertas.foto', 'pesertas.golongan_darah', 'pesertas.alamat_ktp', 'pesertas.alamat_domisili', 'pesertas.pas_foto', 'pesertas.fc_ijin', 'pesertas.fc_ijasa', 'pesertas.nik', 'pesertas.fc_sk', DB::raw('lembagas.name as nama_lembaga'), 'lembagas.bidang_usaha', 'lembagas.jabatan', 'lembagas.alamat', 'lembagas.departemen', DB::raw('lembagas.telp as telp_lembaga'), DB::raw('lembagas.email as email_lembaga'), 'jadwal_trainings.jadwal', 'jadwal_trainings.tempat')
+                ->where('form_daftars.id', $id)->first();
+            // dd($dbpeserta);
+
+
+            return view('/third')->with(compact('dbpeserta'));
+        }
     }
 
     /**

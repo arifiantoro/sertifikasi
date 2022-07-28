@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">First</h1>
+            <h1 class="m-0">Third</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -28,28 +28,32 @@
                 <h5 class="card-title"></h5>
 
                 <p class="card-text">
-                  <table class="table table-stripped" id="datatable">
-            <thead class="bg-dark text-white">
-                <th>No</th>
-                <th>Nama Peserta</th>
-                <th>Nama Lembaga</th>
-                <th>Judul Pelatihan</th>
-		    <th>Aksi</th>
-            </thead>    
-            <tbody>
-                @php $i = 1; @endphp
-                @foreach ($dbpeserta as $pes)
-                    <tr>
-                        <td>{{$i}}</td>
-                        <td>{{ $pes->name }}</td>
-                        <td>{{ $pes->nama_lembaga }}</td>
-                        <td>{{ $pes->title}}</td>
-                        <td><a href="/third/{{ $pes->id }}" class="btn btn-warning">Edit</a></td>
-                    </tr>
-                @php $i++ @endphp
-                @endforeach
-            </tbody>
-        </table>
+                  <div class="card-body">
+        <form action="/#" method="post">
+          {{ csrf_field() }}
+          <div class="form-group">
+            <input type="text" id="name" name="name" class="form-control" placeholder="Nama" value="{{ $dbpeserta->name }}">
+          </div>
+          <div class="form-group">
+            <input type="text" id="title_training" name="title_training" class="form-control" placeholder="Title Training" value="{{ $dbpeserta->title}}">
+          </div>
+          <div class="form-group">
+            <input type="text" id="batch" name="batch" class="form-control" placeholder="Batch" value="">
+          </div>
+          <div class="form-group">
+            <input type="date" id="tgl_pengesahan" name="tgl_pengesahan" class="form-control" placeholder="Tanggal Pengesahan" value="">
+          </div>
+          <div class="form-group">
+            <input type="date" id="masa_berlaku" name="masa_berlaku" class="form-control" placeholder="Masa Berlaku" value="">
+          </div>
+          <div class="form-group">
+            <input type="text" id="lampiran" name="lampiran" class="form-control" placeholder="Lampiran" value="">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success">Simpan</button>
+          </div>
+        </form>
+    </div>
                 </p>
 
                 {{-- <a href="#" class="card-link">Card link</a>
