@@ -42,6 +42,9 @@
         <form action="/simpan" method="post">
           {{ csrf_field() }}
           <div class="form-group">
+            <input type="hidden" id="id" name="id" class="form-control" placeholder="id" value="{{ $dbpeserta->id }}" readonly>
+          </div>
+          <div class="form-group">
             <input type="text" id="name" name="name" class="form-control" placeholder="Nama" value="{{ $dbpeserta->name }}" readonly>
           </div>
           <div class="form-group">

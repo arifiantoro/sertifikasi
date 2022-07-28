@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -54,8 +55,23 @@ class pesertas extends Controller
             'tgl_pengesahan' => ['required'],
             'masa_berlaku' => ['required'],
         ]);
+        $modelsertifikat = new \App\Models\Sertifikasi();
 
-        return redirect('/first')->with('data', $validatedData);
+        $sertifikat = [
+            'peserta_id' => $request->id,
+            'tgl_pengesahan' =>  $request->tgl_pengesahan,
+            'masa_berlaku' => $request->masa_berlaku,
+        ];
+
+
+        if ($modelsertifikat->create($sertifikat)) {
+            return redirect()
+                ->to('/first');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput();
+        }
     }
 
     /**
