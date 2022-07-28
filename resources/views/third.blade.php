@@ -26,25 +26,32 @@
             <div class="card card-primary card-outline">
               <div class="card-body">
                 <h5 class="card-title"></h5>
+                          
+                @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                  @endif
 
                 <p class="card-text">
                   <div class="card-body">
-        <form action="/#" method="post">
+        <form action="/simpan" method="post">
           {{ csrf_field() }}
           <div class="form-group">
-            <input type="text" id="name" name="name" class="form-control" placeholder="Nama" value="{{ $dbpeserta->name }}">
+            <input type="text" id="name" name="name" class="form-control" placeholder="Nama" value="{{ $dbpeserta->name }}" readonly>
           </div>
           <div class="form-group">
-            <input type="text" id="title_training" name="title_training" class="form-control" placeholder="Title Training" value="{{ $dbpeserta->title}}">
+            <input type="text" id="title_training" name="title_training" class="form-control" placeholder="Title Training" value="{{ $dbpeserta->title}}" readonly>
           </div>
           <div class="form-group">
-            <input type="text" id="batch" name="batch" class="form-control" placeholder="Batch" value="">
+            <input type="date" id="tgl_pengesahan" name="tgl_pengesahan" class="form-control col-lg-4" placeholder="Tanggal Pengesahan" value="">
           </div>
           <div class="form-group">
-            <input type="date" id="tgl_pengesahan" name="tgl_pengesahan" class="form-control" placeholder="Tanggal Pengesahan" value="">
-          </div>
-          <div class="form-group">
-            <input type="date" id="masa_berlaku" name="masa_berlaku" class="form-control" placeholder="Masa Berlaku" value="">
+            <input type="date" id="masa_berlaku" name="masa_berlaku" class="form-control col-lg-4" placeholder="Masa Berlaku" value="">
           </div>
           <div class="form-group">
             <input type="text" id="lampiran" name="lampiran" class="form-control" placeholder="Lampiran" value="">
