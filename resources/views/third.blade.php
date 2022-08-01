@@ -48,7 +48,10 @@
             <input type="text" id="name" name="name" class="form-control" placeholder="Nama" value="{{ $dbpeserta->name }}" readonly>
           </div>
           <div class="form-group">
-            <input type="text" id="title_training" name="title_training" class="form-control" placeholder="Title Training" value="{{ $dbpeserta->title}}" readonly>
+            <input type="text" id="title" name="title" class="form-control" placeholder="Title" value="{{ $dbpeserta->nama_sub}}" readonly>
+          </div>
+          <div class="form-group">
+            <input type="text" id="batch" name="batch" class="form-control" placeholder="Batch" value="{{ $dbpeserta->title}}" readonly>
           </div>
           <div class="form-group">
             <input type="date" id="tgl_pengesahan" name="tgl_pengesahan" class="form-control col-lg-4" placeholder="Tanggal Pengesahan" value="">

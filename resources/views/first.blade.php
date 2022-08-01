@@ -32,8 +32,8 @@
             <thead class="bg-dark text-white">
                 <th>No</th>
                 <th>Nama Peserta</th>
-                <th>Nama Lembaga</th>
-                <th>Judul Pelatihan</th>
+                <th>Nama Pelatihan</th>
+                <th>Batch Pelatihan</th>
 		    <th>Aksi</th>
             </thead>    
             <tbody>
@@ -42,7 +42,7 @@
                     <tr>
                         <td>{{$i}}</td>
                         <td>{{ $pes->name }}</td>
-                        <td>{{ $pes->nama_lembaga }}</td>
+                        <td>{{ $pes->nama_sub }}</td>
                         <td>{{ $pes->title}}</td>
                         <td><a href="/third/{{ $pes->id }}" class="btn btn-warning">Edit</a></td>
                     </tr>
