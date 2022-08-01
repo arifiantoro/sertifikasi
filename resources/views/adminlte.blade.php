@@ -83,7 +83,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Starter Pages
+                Aplikasi Sertifikasi SGS
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -91,13 +91,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="{{url("/first")}}" class="nav-link {{(app('request')->route()->uri() == "first") ? "active" : ""}}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>First Page</p>
+                  <p>Data SGS</p>
                 </a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{url("/second")}}" class="nav-link {{(app('request')->route()->uri() == "second") ? "active" : ""}}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Second Page</p>
+                  <p>Data Sertifikat</p>
+                </a>
+              </li> --}}
+              <li class="nav-item">
+                <a href="{{url("/fourth")}}" class="nav-link {{(app('request')->route()->uri() == "fourth") ? "active" : ""}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Reminder</p>
                 </a>
               </li>
             </ul>

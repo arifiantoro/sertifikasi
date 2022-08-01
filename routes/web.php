@@ -31,11 +31,15 @@ Route::get('/first', [peserta::class, 'index']);
 Route::get('/third/{id}', [peserta::class, 'edit']);
 Route::post('/simpan', [peserta::class, 'store']);
 
-// Route::get('/third', function () {
-//     return view('third');
+// Route::get('/fourth', function () {
+//     return view('fourth');
 // });
 
 
 use App\Http\Controllers\sertifikasis as sertifikasi;
 
 Route::get('/second', [sertifikasi::class, 'index']);
+
+use App\Http\Controllers\reminders as reminder;
+
+Route::get('/fourth', [reminder::class, 'index']);
