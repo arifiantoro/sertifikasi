@@ -31,10 +31,10 @@
                   <table class="table table-stripped" id="datatable">
             <thead class="bg-dark text-white">
                 <th>No</th>
-                <th>Nama Peserta</th>
+                
                 <th>Nama Pelatihan</th>
                 <th>Batch Pelatihan</th>
-		    <th>Aksi</th>
+		            <th>Aksi</th>
             </thead>    
             <tbody>
                 @php $i = 1; @endphp
@@ -42,9 +42,9 @@
                     <tr>
                         <td>{{$i}}</td>
                         <td>{{ $pes->name }}</td>
-                        <td>{{ $pes->nama_sub }}</td>
                         <td>{{ $pes->title}}</td>
-                        <td><a href="/third/{{ $pes->id }}" class="btn btn-warning">Edit</a></td>
+                        <td><a href="/third/{{ $pes->id_training }}" class="btn btn-warning">Masa Berlaku</a>
+                        </td>
                     </tr>
                 @php $i++ @endphp
                 @endforeach

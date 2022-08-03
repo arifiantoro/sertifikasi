@@ -15,16 +15,40 @@ class reminders extends Controller
     public function index()
     {
         $dbpeserta = new \App\Models\PesertaSGS();
-        $dbpeserta = DB::table('form_daftars')
-            ->rightjoin('pesertas', 'form_daftars.id_peserta', '=', 'pesertas.id')
-            ->join('trainings', 'form_daftars.id_training', '=', 'trainings.id')
-            ->leftJoin('sub_categori_trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
-            ->rightjoin('dbsertifikasi.sertifikat as db2', 'form_daftars.id', '=', 'db2.peserta_id')
+        $dbpeserta = DB::table('trainings')
+            ->join('sub_categori_trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
+            ->rightjoin('dbsertifikasi.sertifikat as db2', 'db2.training_id', '=', 'trainings.id')
             ->select(
-                ['form_daftars.id_peserta', 'pesertas.name as nama', 'db2.peserta_id', 'db2.tgl_pengesahan', 'db2.masa_berlaku', DB::raw('sub_categori_trainings.name as nama_sub')],
+                [
+                    'db2.training_id', 'db2.tgl_pengesahan', 'db2.masa_berlaku', DB::raw('trainings.title as title'), DB::raw('sub_categori_trainings.name as name'),
+                    DB::raw('trainings.id as id'),
+
+                ],
             )
             ->orderBy('masa_berlaku', 'desc')
             ->get();
         return view('/fourth', compact('dbpeserta'));
+    }
+
+    public function remind($id)
+    {
+        $dbpeserta = new \App\Models\PesertaSGS();
+        $dbpeserta = DB::table('trainings')
+            ->join('sub_categori_trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
+            ->join('form_daftars', 'trainings.id', '=', 'form_daftars.id_training')
+            ->join('pesertas', 'form_daftars.id_peserta', '=', 'pesertas.id')
+            ->rightjoin('dbsertifikasi.sertifikat as db2', 'db2.training_id', '=', 'trainings.id')
+            ->select(
+                [
+                    'db2.training_id', 'db2.tgl_pengesahan', 'db2.masa_berlaku', DB::raw('trainings.title as title'), DB::raw('pesertas.name as name'),
+                    'pesertas.telp',
+                    DB::raw('trainings.id as id'),
+                ],
+            )
+            ->where('form_daftars.id_training', '=', $id)
+            ->get();
+
+
+        return view('/fifth', compact('dbpeserta'));
     }
 }

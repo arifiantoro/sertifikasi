@@ -22,44 +22,16 @@ class pesertas extends Controller
     public function index()
     {
         $dbpeserta = new \App\Models\PesertaSGS();
-        $dbpeserta = DB::table('form_daftars')
-            ->join('pesertas', 'form_daftars.id_peserta', '=', 'pesertas.id')
-            ->leftJoin('lembagas', 'pesertas.id', '=', 'lembagas.id_peserta')
-            ->join('trainings', 'form_daftars.id_training', '=', 'trainings.id')
+        $dbpeserta = DB::table('trainings')
+
             ->leftJoin('sub_categori_trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
 
             ->select(
-                DB::raw('@nomor := @nomor + 1 as no'),
-                'form_daftars.id',
-                'form_daftars.tgl_daftar',
+                DB::raw('trainings.id as id_training'),
+                'sub_categori_trainings.name',
                 'trainings.title',
-                'pesertas.name',
-                'pesertas.jk',
-                'pesertas.tempat_lahir',
-                'pesertas.tgl_lahir',
-                'pesertas.pendidikan',
-                'pesertas.telp',
-                'pesertas.email',
-                'pesertas.foto',
-                'pesertas.golongan_darah',
-                'pesertas.alamat_ktp',
-                'pesertas.alamat_domisili',
-                'pesertas.pas_foto',
-                'pesertas.fc_ijin',
-                'pesertas.fc_ijasa',
-                'pesertas.nik',
-                'pesertas.fc_sk',
-
-
-                DB::raw('lembagas.name as nama_lembaga'),
-                'lembagas.bidang_usaha',
-                'lembagas.jabatan',
-                'lembagas.alamat',
-                'lembagas.departemen',
-                DB::raw('sub_categori_trainings.name as nama_sub'),
-
             )
-            ->orderByRaw('form_daftars.tgl_daftar DESC')
+            ->orderByRaw('trainings.created_at DESC')
             ->get();
 
         return view('/first', compact('dbpeserta'));
@@ -70,9 +42,16 @@ class pesertas extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cek()
     {
-        //
+        $dbpeserta = new \App\Models\PesertaSGS();
+        $dbpeserta = DB::table('form_daftars')
+            ->join('pesertas', 'form_daftars.id_peserta', '=', 'pesertas.id')
+            ->leftJoin('lembagas', 'pesertas.id', '=', 'lembagas.id_peserta')
+            ->join('trainings', 'form_daftars.id_training', '=', 'trainings.id')
+            ->join('jadwal_trainings', 'trainings.id', '=', 'jadwal_trainings.training_id')
+            ->get();
+        return view('/fifth', compact('dbpeserta'));
     }
 
     /**
@@ -90,7 +69,7 @@ class pesertas extends Controller
         $modelsertifikat = new \App\Models\Sertifikasi();
 
         $sertifikat = [
-            'peserta_id' => $request->id,
+            'training_id' => $request->id,
             'tgl_pengesahan' =>  $request->tgl_pengesahan,
             'masa_berlaku' => $request->masa_berlaku,
         ];
@@ -125,43 +104,16 @@ class pesertas extends Controller
      */
     public function edit($id)
     { {
-            $dbpeserta = DB::table('form_daftars')
-                ->join('pesertas', 'form_daftars.id_peserta', '=', 'pesertas.id')
-                ->leftJoin('lembagas', 'pesertas.id', '=', 'lembagas.id_peserta')
-                ->join('trainings', 'form_daftars.id_training', '=', 'trainings.id')
-                ->leftJoin('sub_categori_trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
+            $dbpeserta = DB::table('trainings')
+                ->rightjoin('sub_categori_trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
                 ->select(
-                    DB::raw('@nomor := @nomor + 1 as no'),
-                    'form_daftars.id',
-                    'form_daftars.tgl_daftar',
+                    DB::raw('trainings.id as id_training'),
+                    DB::raw('sub_categori_trainings.name as name'),
+                    'sub_categori_trainings.name',
                     'trainings.title',
-                    'pesertas.name',
-                    'pesertas.jk',
-                    'pesertas.tempat_lahir',
-                    'pesertas.tgl_lahir',
-                    'pesertas.pendidikan',
-                    'pesertas.telp',
-                    'pesertas.email',
-                    'pesertas.foto',
-                    'pesertas.golongan_darah',
-                    'pesertas.alamat_ktp',
-                    'pesertas.alamat_domisili',
-                    'pesertas.pas_foto',
-                    'pesertas.fc_ijin',
-                    'pesertas.fc_ijasa',
-                    'pesertas.nik',
-                    'pesertas.fc_sk',
-
-
-                    DB::raw('lembagas.name as nama_lembaga'),
-                    'lembagas.bidang_usaha',
-                    'lembagas.jabatan',
-                    'lembagas.alamat',
-                    'lembagas.departemen',
-                    DB::raw('sub_categori_trainings.name as nama_sub'),
 
                 )
-                ->where('form_daftars.id', $id)->first();
+                ->where('trainings.id', $id)->first();
             // dd($dbpeserta);
 
 

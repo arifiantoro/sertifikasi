@@ -31,11 +31,6 @@ Route::get('/first', [peserta::class, 'index']);
 Route::get('/third/{id}', [peserta::class, 'edit']);
 Route::post('/simpan', [peserta::class, 'store']);
 
-// Route::get('/fourth', function () {
-//     return view('fourth');
-// });
-
-
 use App\Http\Controllers\sertifikasis as sertifikasi;
 
 Route::get('/second', [sertifikasi::class, 'index']);
@@ -43,3 +38,7 @@ Route::get('/second', [sertifikasi::class, 'index']);
 use App\Http\Controllers\reminders as reminder;
 
 Route::get('/fourth', [reminder::class, 'index']);
+Route::get('/fifth/{id}', [reminder::class, 'remind']);
+// Route::get('/fifth', function () {
+//     return view('fifth');
+// });
