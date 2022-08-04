@@ -21,6 +21,7 @@ class reminders extends Controller
             ->select(
                 [
                     'db2.training_id', 'db2.tgl_pengesahan', 'db2.masa_berlaku', DB::raw('trainings.title as title'), DB::raw('sub_categori_trainings.name as name'),
+                    'sub_categori_trainings.id as id_batch',
                     DB::raw('trainings.id as id'),
 
                 ],
@@ -42,13 +43,15 @@ class reminders extends Controller
                 [
                     'db2.training_id', 'db2.tgl_pengesahan', 'db2.masa_berlaku', DB::raw('trainings.title as title'), DB::raw('pesertas.name as name'),
                     'pesertas.telp',
+                    'pesertas.email',
                     DB::raw('trainings.id as id'),
                 ],
             )
             ->where('form_daftars.id_training', '=', $id)
             ->get();
+        // dd($dbpeserta);
 
-
-        return view('/fifth', compact('dbpeserta'));
+        $training = DB::table('trainings')->where('id', '=', $id)->select('title')->first();
+        return view('/fifth', compact('dbpeserta', 'training'));
     }
 }

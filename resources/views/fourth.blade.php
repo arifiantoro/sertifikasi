@@ -46,7 +46,9 @@
                         <td>{{ $ser->title }}</td>
                         <td>{{ $ser->tgl_pengesahan }}</td>
                         <td>{{ $ser->masa_berlaku }}</td>
-                        <td><a href="/fifth/{{ $ser->id }}" class="btn btn-success">Lihat Peserta</a></td>
+                        <td><a href="/fifth/{{ $ser->id }}" class="btn btn-success">Lihat Peserta</a>
+                        <a href="/kirim-email/{{ $ser->id }}"><button type="button" class="btn btn-primary" > <i class="fa fa-envelope"> </i> Kirim Email</button></a>
+                        </td>
                     </tr>
                 @php $i++ @endphp
                 @endforeach

@@ -6,8 +6,8 @@
         <div class="row mb-2">
           <div class="col-sm-6">
            
-            <h3 class="m-0">Peserta Pelatihan <?$title?> </h3>
-           
+            <h3 class="m-0">Peserta Pelatihan {{ $training->title ?? "Training Tidak Ditemukan" }}</h3>
+            <a href="/kirim-email/"><button type="button" class="btn btn-primary" > <i class="fa fa-envelope"> </i> Kirim Email</button></a>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -43,7 +43,7 @@
                     <tr>
                         <td>{{$i}}</td>
                         <td>{{ $ser->name }}</td>
-                        <td><button class="btn btn-sm btn-success rounded" onClick = "window.open( 'https://api.whatsapp.com/send?phone=<?= $ser->telp ?>&text=Hai+<?= $ser->name ?>+%2CSebelumnya+terima+kasih+telah+melakukan+sertifikasi+di+LSP+NKI.+Kami+menginformasikan+kepada+anda+bahwa+masa+berlaku+sertifikat+anda+akan+berakhir%2C+anda+dapat+melakukan+perpanjangan+dengan+menghubungi+kami+di+nomor+ini.', '_blank' )" >
+                        <td><button class="btn btn-sm btn-success rounded" onClick = "window.open( 'https://api.whatsapp.com/send?phone=<?= $ser->telp ?>&text=Hai+<?= $ser->name ?>+%2CSebelumnya+terima+kasih+telah+melakukan+sertifikasi+di+Sinarindo+Global+Sarana.+Kami+menginformasikan+kepada+anda+bahwa+masa+berlaku+sertifikat+anda+akan+berakhir%2C+anda+dapat+melakukan+perpanjangan+dengan+menghubungi+kami+di+nomor+ini.', '_blank' )" >
                            <i class="fab fa-whatsapp"></i> Kirim Whatsapp
                         </button></td>
                     </tr>

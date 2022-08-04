@@ -39,6 +39,8 @@ use App\Http\Controllers\reminders as reminder;
 
 Route::get('/fourth', [reminder::class, 'index']);
 Route::get('/fifth/{id}', [reminder::class, 'remind']);
+
+Route::get('kirim-email/{id}', 'App\Http\Controllers\MailController@index');
 // Route::get('/fifth', function () {
 //     return view('fifth');
 // });
