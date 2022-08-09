@@ -28,6 +28,8 @@ Route::get('/admin', function () {
 use App\Http\Controllers\pesertas as peserta;
 
 Route::get('/first', [peserta::class, 'index']);
+Route::get('/sub/{id}', [peserta::class, 'sub']);
+
 Route::get('/third/{id}', [peserta::class, 'edit']);
 Route::post('/simpan', [peserta::class, 'store']);
 
@@ -41,6 +43,3 @@ Route::get('/fourth', [reminder::class, 'index']);
 Route::get('/fifth/{id}', [reminder::class, 'remind']);
 
 Route::get('kirim-email/{id}', 'App\Http\Controllers\MailController@index');
-// Route::get('/fifth', function () {
-//     return view('fifth');
-// });

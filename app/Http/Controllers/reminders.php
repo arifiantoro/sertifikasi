@@ -17,7 +17,7 @@ class reminders extends Controller
         $dbpeserta = new \App\Models\PesertaSGS();
         $dbpeserta = DB::table('trainings')
             ->join('sub_categori_trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
-            ->rightjoin('dbsertifikasi.sertifikat as db2', 'db2.training_id', '=', 'trainings.id')
+            ->rightjoin('dbsertifikasi.sertifikasi as db2', 'db2.training_id', '=', 'trainings.id')
             ->select(
                 [
                     'db2.training_id', 'db2.tgl_pengesahan', 'db2.masa_berlaku', DB::raw('trainings.title as title'), DB::raw('sub_categori_trainings.name as name'),
@@ -38,7 +38,7 @@ class reminders extends Controller
             ->join('sub_categori_trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
             ->join('form_daftars', 'trainings.id', '=', 'form_daftars.id_training')
             ->join('pesertas', 'form_daftars.id_peserta', '=', 'pesertas.id')
-            ->rightjoin('dbsertifikasi.sertifikat as db2', 'db2.training_id', '=', 'trainings.id')
+            ->rightjoin('dbsertifikasi.sertifikasi as db2', 'db2.training_id', '=', 'trainings.id')
             ->select(
                 [
                     'db2.training_id', 'db2.tgl_pengesahan', 'db2.masa_berlaku', DB::raw('trainings.title as title'), DB::raw('pesertas.name as name'),

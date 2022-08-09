@@ -83,34 +83,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fa-solid fa-book-sparkles"></i>
               <p>
-                Aplikasi Sertifikasi SGS
+                Pembinaan & Pelatihan
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+              
               <li class="nav-item">
                 <a href="{{url("/first")}}" class="nav-link {{(app('request')->route()->uri() == "first") ? "active" : ""}}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Data SGS</p>
-                </a>
-              </li>
-              {{-- <li class="nav-item">
-                <a href="{{url("/second")}}" class="nav-link {{(app('request')->route()->uri() == "second") ? "active" : ""}}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Sertifikat</p>
-                </a>
-              </li> --}}
-              <li class="nav-item">
-                <a href="{{url("/fourth")}}" class="nav-link {{(app('request')->route()->uri() == "fourth") ? "active" : ""}}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Reminder</p>
+                  <p>Tampilkan Semua</p>
                 </a>
               </li>
             </ul>
           </li>
-          
+          <li class="nav-item menu-open">
+            <a href="{{url("/fourth")}}" class="nav-link {{(app('request')->route()->uri() == "fourth") ? "active" : ""}}" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Reminder
+              </p>
+            </a>
+            
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -164,5 +161,6 @@ $(document).ready( function () {
 </script>
 
 <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
 </body>
 </html>

@@ -22,20 +22,42 @@ class pesertas extends Controller
     public function index()
     {
         $dbpeserta = new \App\Models\PesertaSGS();
-        $dbpeserta = DB::table('trainings')
+        $dbpeserta = DB::table('sub_categori_trainings')
 
-            ->leftJoin('sub_categori_trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
+            // ->leftjoin('trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
 
             ->select(
-                DB::raw('trainings.id as id_training'),
+                DB::raw('sub_categori_trainings.id as id_training'),
+                'sub_categori_trainings.category_id_training',
                 'sub_categori_trainings.name',
-                'trainings.title',
             )
-            ->orderByRaw('trainings.created_at DESC')
-            ->get();
+
+            ->paginate(16);
+
 
         return view('/first', compact('dbpeserta'));
     }
+
+    public function sub($id)
+    {
+        $dbpeserta = new \App\Models\PesertaSGS();
+        $dbpeserta = DB::table('sub_categori_trainings')
+            ->leftjoin('trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
+            ->select(
+                DB::raw('trainings.sub_category_id_training as id_training'),
+                'trainings.id',
+                'sub_categori_trainings.name',
+                'trainings.title',
+
+            )
+            ->where('trainings.sub_category_id_training', $id)
+            ->get();
+        // dd($dbpeserta);
+
+
+        return view('/sub')->with(compact('dbpeserta'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -104,8 +126,8 @@ class pesertas extends Controller
      */
     public function edit($id)
     { {
-            $dbpeserta = DB::table('trainings')
-                ->rightjoin('sub_categori_trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
+            $dbpeserta = DB::table('sub_categori_trainings')
+                ->rightjoin('trainings', 'sub_categori_trainings.id', '=', 'trainings.sub_category_id_training')
                 ->select(
                     DB::raw('trainings.id as id_training'),
                     DB::raw('sub_categori_trainings.name as name'),

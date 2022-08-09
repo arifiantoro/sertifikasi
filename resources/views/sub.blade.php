@@ -5,8 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-           
-            <h3 class="m-0">Peserta Pelatihan {{ $training->title ?? "Training Tidak Ditemukan" }}</h3>
+            <h1 class="m-0">Sub</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -29,24 +28,23 @@
                 <h5 class="card-title"></h5>
 
                 <p class="card-text">
-                  <table class="table table-stripped" id="tatable">
+                  <table class="table table-stripped" id="datatable">
             <thead class="bg-dark text-white">
                 <th>No</th>
-                <th>Nama</th>
-                <th>Kirim Whatsapp</th>
-                <th>Update Data</th>
+                
+                <th>Nama Pelatihan</th>
+                <th>Batch Pelatihan</th>
+		            <th>Aksi</th>
             </thead>    
             <tbody>
-              
                 @php $i = 1; @endphp
-                @foreach ($dbpeserta as $ser)
+                @foreach ($dbpeserta as $pes)
                     <tr>
                         <td>{{$i}}</td>
-                        <td>{{ $ser->name }}</td>
-                        <td><button class="btn btn-sm btn-success rounded" onClick = "window.open( 'https://api.whatsapp.com/send?phone=<?= $ser->telp ?>&text=Hai+<?= $ser->name ?>+%2CSebelumnya+terima+kasih+telah+melakukan+sertifikasi+di+Sinarindo+Global+Sarana.+Kami+menginformasikan+kepada+anda+bahwa+masa+berlaku+sertifikat+anda+akan+berakhir%2C+anda+dapat+melakukan+perpanjangan+dengan+menghubungi+kami+di+nomor+ini.', '_blank' )" >
-                           <i class="fab fa-whatsapp"></i> Ingatkan
-                        </button></td>
-                        <td><a href="#" class="btn btn-warning">Update Data</a></td>
+                        <td>{{ $pes->name }}</td>
+                        <td>{{ $pes->title}}</td>
+                        <td><a href="/third/{{ $pes->id }}" class="btn btn-warning">Masa Berlaku</a>
+                        </td>
                     </tr>
                 @php $i++ @endphp
                 @endforeach
