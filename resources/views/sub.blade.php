@@ -43,7 +43,7 @@
                         <td>{{$i}}</td>
                         <td>{{ $pes->name }}</td>
                         <td>{{ $pes->title}}</td>
-                        <td><a href="/third/{{ $pes->id }}" class="btn btn-warning">Masa Berlaku</a>
+                        <td><a href="/third/{{ $pes->id }}" class="btn btn-warning">Input Data</a>
                         </td>
                     </tr>
                 @php $i++ @endphp

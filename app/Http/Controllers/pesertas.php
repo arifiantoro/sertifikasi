@@ -87,19 +87,33 @@ class pesertas extends Controller
         $validatedData = $request->validate([
             'tgl_pengesahan' => ['required'],
             'masa_berlaku' => ['required'],
+
         ]);
         $modelsertifikat = new \App\Models\Sertifikasi();
+
+        $upload = $request->file('lampiran');
+        // dd($upload);
+        if (is_dir(public_path('images'))) {
+            $upload->move(public_path('images'), $upload->getClientOriginalName());
+        } else {
+            mkdir(public_path('images'));
+            $upload->move(public_path('images'), $upload->getClientOriginalName());
+        }
 
         $sertifikat = [
             'training_id' => $request->id,
             'tgl_pengesahan' =>  $request->tgl_pengesahan,
             'masa_berlaku' => $request->masa_berlaku,
+            'permohonan' => $request->permohonan,
+            'pemberitahuan' => $request->pemberitahuan,
+            'lampiran' => $upload->getClientOriginalName(),
         ];
-
+        // dd($sertifikat);
 
         if ($modelsertifikat->create($sertifikat)) {
-            return redirect()
-                ->to('/first');
+            // return redirect()
+            //     ->to('/first');
+            return redirect()->back();
         } else {
             return redirect()
                 ->back()

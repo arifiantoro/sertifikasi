@@ -46,7 +46,7 @@
                         <td><button class="btn btn-sm btn-success rounded" onClick = "window.open( 'https://api.whatsapp.com/send?phone=<?= $ser->telp ?>&text=Hai+<?= $ser->name ?>+%2CSebelumnya+terima+kasih+telah+melakukan+sertifikasi+di+Sinarindo+Global+Sarana.+Kami+menginformasikan+kepada+anda+bahwa+masa+berlaku+sertifikat+anda+akan+berakhir%2C+anda+dapat+melakukan+perpanjangan+dengan+menghubungi+kami+di+nomor+ini.', '_blank' )" >
                            <i class="fab fa-whatsapp"></i> Ingatkan
                         </button></td>
-                        <td><a href="#" class="btn btn-warning">Update Data</a></td>
+                        <td><a href="/upload/{{ $ser->id_peserta }}" class="btn btn-warning">Upload Sertifikat</a></td>
                     </tr>
                 @php $i++ @endphp
                 @endforeach

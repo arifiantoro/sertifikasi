@@ -10,5 +10,5 @@ class Sertifikasi extends Model
     use HasFactory;
     public $table = "sertifikasi";
     protected $connection = 'mysql2';
-    protected $fillable = ['training_id', 'masa_berlaku', 'tgl_pengesahan', 'sertifikat'];
+    protected $fillable = ['training_id', 'masa_berlaku', 'tgl_pengesahan', 'sertifikat', 'permohonan', 'pemberitahuan'];
 }

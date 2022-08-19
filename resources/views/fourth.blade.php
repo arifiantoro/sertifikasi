@@ -31,9 +31,10 @@
                   <table class="table table-stripped" id="datatable">
             <thead class="bg-dark text-white">
                 <th>No</th>
-                <th>Nama</th>
+                <th>Nama Pelatihan</th>
                 <th>Judul Pelatihan</th>
-                <th>Tanggal Pengesahan</th>
+                <th>Nomor Surat Pemberitahuan</th>
+                <th>Nomor Surat Permohonan</th>
                 <th>Masa Berlaku</th>
                 <th>Aksi</th>
             </thead>    
@@ -44,7 +45,8 @@
                         <td>{{$i}}</td>
                         <td>{{ $ser->name }}</td>
                         <td>{{ $ser->title }}</td>
-                        <td>{{ $ser->tgl_pengesahan }}</td>
+                        <td>{{ $ser->pemberitahuan }}</td>
+                        <td>{{ $ser->permohonan }}</td>
                         <td>{{ $ser->masa_berlaku }}</td>
                         <td><a href="/fifth/{{ $ser->id }}" class="btn btn-success">Lihat Peserta</a>
                         <a href="/kirim-email/{{ $ser->id }}"><button type="button" class="btn btn-primary" > <i class="fa fa-envelope"> </i> Kirim Email</button></a>

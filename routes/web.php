@@ -17,29 +17,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('adminlte');
-});
-
-// Route::get('/first', function () {
-//     return view('first');
-// });
+Auth::routes();
 
 use App\Http\Controllers\pesertas as peserta;
 
-Route::get('/first', [peserta::class, 'index']);
-Route::get('/sub/{id}', [peserta::class, 'sub']);
+Route::get('/first', [peserta::class, 'index'])->middleware('auth');
+Route::get('/sub/{id}', [peserta::class, 'sub'])->middleware('auth');
 
-Route::get('/third/{id}', [peserta::class, 'edit']);
-Route::post('/simpan', [peserta::class, 'store']);
+Route::get('/third/{id}', [peserta::class, 'edit'])->middleware('auth');
+Route::post('/simpan', [peserta::class, 'store'])->middleware('auth');
 
-use App\Http\Controllers\sertifikasis as sertifikasi;
-
-Route::get('/second', [sertifikasi::class, 'index']);
 
 use App\Http\Controllers\reminders as reminder;
 
-Route::get('/fourth', [reminder::class, 'index']);
-Route::get('/fifth/{id}', [reminder::class, 'remind']);
+Route::get('/fourth', [reminder::class, 'index'])->middleware('auth');
+Route::get('/fifth/{id}', [reminder::class, 'remind'])->middleware('auth');
+Route::get('/upload/{id}', [reminder::class, 'upload']);
+Route::post('/update', [reminder::class, 'store']);
 
-Route::get('kirim-email/{id}', 'App\Http\Controllers\MailController@index');
+Route::get('kirim-email/{id}', 'App\Http\Controllers\MailController@index')->middleware('auth');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
