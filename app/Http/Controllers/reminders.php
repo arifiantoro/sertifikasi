@@ -88,7 +88,7 @@ class reminders extends Controller
 
         ]);
         $modelupload = new \App\Models\upload();
-
+        
         $upload = $request->file('sertifikat');
         // dd($upload);
         if (is_dir(public_path('images'))) {
@@ -98,31 +98,46 @@ class reminders extends Controller
             $upload->move(public_path('images'), $upload->getClientOriginalName());
         }
 
-        $uploadsgs = $request->file('sertifikatsgs');
-        // dd($upload);
-        if (is_dir(public_path('images'))) {
+        if ($request->hasFile('sertifikatsgs')) {
+            $uploadsgs = $request->file('sertifikatsgs');
+        // dd($uploadsgs);
+            if (is_dir(public_path('images'))) {
             $uploadsgs->move(public_path('images'), $uploadsgs->getClientOriginalName());
-        } else {
+            } else {
             mkdir(public_path('images'));
             $uploadsgs->move(public_path('images'), $uploadsgs->getClientOriginalName());
+          }
+        } else{
+            $uploadsgs = null;
         }
-
-        $uploadskp = $request->file('skp');
-        // dd($upload);
-        if (is_dir(public_path('images'))) {
+        
+        if ($request->hasFile('skp')) {
+            $uploadskp = $request->file('skp');
+        // dd($uploadskp);
+            if (is_dir(public_path('images'))) {
             $uploadskp->move(public_path('images'), $uploadskp->getClientOriginalName());
-        } else {
+            } else {
             mkdir(public_path('images'));
             $uploadskp->move(public_path('images'), $uploadskp->getClientOriginalName());
+          }
+        } else{
+            $uploadskp = null;
         }
 
+        
+    
         $upload = [
-            'id_peserta' => $request->id,
+            'id_peserta' => $request->id ,
             'sertifikat' => $upload->getClientOriginalName(),
-            'sertifikatsgs' => $uploadsgs->getClientOriginalName(),
-            'skp' => $uploadskp->getClientOriginalName(),
-
         ];
+
+        if($uploadsgs <> null){
+            $upload = array_merge($upload, array('sertifikatsgs' => $uploadsgs->getClientOriginalName()));
+        }
+        if($uploadskp <> null){
+            $upload = array_merge($upload, array('sertifikatskp' => $uploadskp->getClientOriginalName()));
+        }
+
         // dd($upload);
 
         if ($modelupload->insert($upload)) {

@@ -60,21 +60,21 @@
           <div class="mb-3 row">
             <label for="inputLampiran" class="col-sm-2 col-file-label">Sertifikat</label>
             <div class="col-sm-3">
-              <input type="file" id="sertifikat" name="sertifikat" enctype="multipart/form-data" class="custom-file-input" placeholder="Lampiran" value="">
+              <input type="file" id="sertifikat" name="sertifikat" class="custom-file-input" placeholder="Sertifikat" value="">
               <label class="custom-file-label" for="inputLampiran">Choose File</label>            
             </div>
           </div>
           <div class="mb-3 row">
             <label for="inputLampiran" class="col-sm-2 col-file-label">Sertifikat SGS</label>
             <div class="col-sm-3">
-              <input type="file" id="sertifikatsgs" name="sertifikatsgs" enctype="multipart/form-data" class="custom-file-input" placeholder="Lampiran" value="">
+              <input type="file" id="sertifikatsgs" name="sertifikatsgs" class="custom-file-input" placeholder="SGS" value="">
               <label class="custom-file-label" for="inputLampiran">Choose File</label>            
             </div>
           </div>
           <div class="mb-3 row">
             <label for="inputLampiran" class="col-sm-2 col-file-label">SKP</label>
             <div class="col-sm-3">
-              <input type="file" id="skp" name="skp" enctype="multipart/form-data" class="custom-file-input" placeholder="Lampiran" value="">
+              <input type="file" id="skp" name="skp" class="custom-file-input" placeholder="SKP" value="">
               <label class="custom-file-label" for="inputLampiran">Choose File</label>            
             </div>
           </div>
