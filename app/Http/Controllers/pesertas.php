@@ -110,9 +110,7 @@ class pesertas extends Controller
         ];
         // dd($sertifikat);
 
-        if ($modelsertifikat->create($sertifikat)) {
-            // return redirect()
-            //     ->to('/first');
+        if ($modelsertifikat->insert($sertifikat)) {
             return redirect()->back();
         } else {
             return redirect()

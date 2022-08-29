@@ -90,7 +90,7 @@ class reminders extends Controller
         $modelupload = new \App\Models\upload();
 
         $upload = $request->file('sertifikat');
-        dd($upload);
+        // dd($upload);
         if (is_dir(public_path('images'))) {
             $upload->move(public_path('images'), $upload->getClientOriginalName());
         } else {
@@ -98,16 +98,34 @@ class reminders extends Controller
             $upload->move(public_path('images'), $upload->getClientOriginalName());
         }
 
+        $uploadsgs = $request->file('sertifikatsgs');
+        // dd($upload);
+        if (is_dir(public_path('images'))) {
+            $uploadsgs->move(public_path('images'), $uploadsgs->getClientOriginalName());
+        } else {
+            mkdir(public_path('images'));
+            $uploadsgs->move(public_path('images'), $uploadsgs->getClientOriginalName());
+        }
+
+        $uploadskp = $request->file('skp');
+        // dd($upload);
+        if (is_dir(public_path('images'))) {
+            $uploadskp->move(public_path('images'), $uploadskp->getClientOriginalName());
+        } else {
+            mkdir(public_path('images'));
+            $uploadskp->move(public_path('images'), $uploadskp->getClientOriginalName());
+        }
+
         $upload = [
             'id_peserta' => $request->id,
             'sertifikat' => $upload->getClientOriginalName(),
-            'sertifikatsgs' => $request->sertifikatsgs,
-            'skp' => $request->skp,
+            'sertifikatsgs' => $uploadsgs->getClientOriginalName(),
+            'skp' => $uploadskp->getClientOriginalName(),
 
         ];
         // dd($upload);
 
-        if ($modelupload->create($upload)) {
+        if ($modelupload->insert($upload)) {
             // return redirect()
             //     ->to('/first');
             return redirect()->back();
